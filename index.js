@@ -70,19 +70,13 @@ console.log("Görev 2", Finaller(fifaData));
 	3. Finaller data setindeki tüm yılları içeren "years" adındaki diziyi(array) döndürecek
 	*/
 
-// const finalMaclariDizi = function Finaller(arr) {
-//   const finalMaclari = arr.filter((finalMac) => finalMac.Stage === "Final");
-
-//   return finalMaclari;
-// };
-
-function Yillar(/*arrm, finallerbul*/) {
-  //   const fifaYillari = finallerbul(arrm);
-  //   const finalYillari = fifaYillari.map((sadeceYil) => sadeceYil.Year);
-  //   return finalYillari;
+function Yillar(arrm, callback) {
+  const fifaYillari = callback(arrm);
+  const finalYillari = fifaYillari.map((sadeceYil) => sadeceYil.Year);
+  return finalYillari;
 }
 
-// console.log("Görev 3", Yillar(fifaData, finalMaclariDizi()));
+console.log("Görev 3", Yillar(fifaData, Finaller));
 
 /*  Görev 4: 
 	Bir higher-order fonksiyonunu olan Kazananlar isimli fonksiyona aşağıdakileri uygulayın:  
@@ -92,10 +86,19 @@ function Yillar(/*arrm, finallerbul*/) {
 	💡 İPUCU: Beraberlikler(ties) için şimdilik endişelenmeyin (Detaylı bilgi için README dosyasına bakabilirsiniz.)
 	4. Tüm kazanan ülkelerin isimlerini içeren `kazananlar` adında bir dizi(array) döndürecek(return)  */
 
-function Kazananlar(/* kodlar buraya */) {
-  /* kodlar buraya */
+function Kazananlar(arrYeter, callback) {
+  const finaldekiler = callback(arrYeter);
+  const kazananUlkeler = finaldekiler.map((lider) => {
+    if (lider["Home Team Goals"] > lider["Away Team Goals"]) {
+      return lider["Home Team Name"];
+    } else {
+      return lider["Away Team Name"];
+    }
+  });
+  return kazananUlkeler;
 }
 
+console.log("Görev 4", Kazananlar(fifaData, Finaller));
 /*  Görev 5: 
 	Bir higher-order fonksiyonu olan YillaraGoreKazananlar isimli fonksiyona aşağıdakileri uygulayın:
 	1. fifaData dizisini(array) fonksiyonunun birinci parametresi olarak alacak
@@ -107,9 +110,12 @@ function Kazananlar(/* kodlar buraya */) {
 	💡 İPUCU: her cümlenin adım 4'te belirtilen cümleyle birebir aynı olması gerekmektedir.
 */
 
-function YillaraGoreKazananlar(/* kodlar buraya */) {
-  /* kodlar buraya */
-}
+function YillaraGoreKazananlar(dizidizi, callback1, callback2, callback3) {}
+
+console.log(
+  "Görev 5",
+  YillaraGoreKazananlar(fifaData, Finaller, Yillar, Kazananlar)
+);
 
 /*  Görev 6: 
 	Bir higher order fonksiyonu olan `OrtalamaGolSayisi` isimli fonksiyona aşağıdakileri uygulayın: 
